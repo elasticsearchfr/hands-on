@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * <br>When starting tests, we initialize Elasticsearch cluster with
  * 1000 beers.
  * <br>After tests, we remove all beers.
+ * @see http://www.elasticsearch.org/guide/reference/java-api/search.html
  */
 public class SearchTest extends StartNode {
 	protected final ESLogger logger = ESLoggerFactory.getLogger(this.getClass().getName());
