@@ -21,6 +21,12 @@ import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * We want to test search methods.
+ * <br>When starting tests, we initialize Elasticsearch cluster with
+ * 1000 beers.
+ * <br>After tests, we remove all beers.
+ */
 public class SearchTest extends StartNode {
 	protected final ESLogger logger = ESLoggerFactory.getLogger(this.getClass().getName());
 
