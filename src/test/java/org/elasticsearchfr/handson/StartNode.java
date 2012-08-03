@@ -48,8 +48,5 @@ public class StartNode {
 		}
 	}
 	
-	@Before
-	public void setUp() throws Exception {
-	}
 
 }
