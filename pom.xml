@@ -105,4 +105,12 @@
 		</dependency>
 	</dependencies>
 
+	<repositories>
+		<repository>
+			<id>sonatype</id>
+			<name>Sonatype</name>
+			<url>https://oss.sonatype.org/content/repositories/releases/</url>
+		</repository>	
+	</repositories>
+
 </project>
