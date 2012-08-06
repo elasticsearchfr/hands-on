@@ -48,8 +48,8 @@ You can add the following line at the end of NodeTest:
 
      Thread.sleep(120000);
      
-And open in your browser: http://localhost:9200/_plugin/head/ to see one node, then both nodes and then only one node.
-Have a look also at http://localhost:9200/_plugin/bigdesk/
+And open in your browser: [http://localhost:9200/_plugin/head/](http://localhost:9200/_plugin/head/) to see one node, then both nodes and then only one node.
+Have a look also at [http://localhost:9200/_plugin/bigdesk/](http://localhost:9200/_plugin/bigdesk/)
 
 
 ### Test 1: Index/Get and Delete some documents
