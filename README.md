@@ -21,7 +21,7 @@ First, you can download a full packaged version of Elasticsearch with:
 
 ### Download the project
 
-     git clone https://github.com/dadoonet/hands-on.git
+     git clone https://github.com/elasticsearchfr/hands-on.git
 
 ### Compile the project
 
