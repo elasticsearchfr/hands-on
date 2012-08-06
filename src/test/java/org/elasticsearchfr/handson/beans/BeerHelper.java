@@ -17,7 +17,7 @@ public class BeerHelper {
 
 	private static String generateBrand() {
 
-		Long result = Math.round(Math.random() * 3);
+		Long result = Math.round(Math.random() * 2);
 
 		switch (result.intValue()) {
 		case 0:
@@ -36,7 +36,7 @@ public class BeerHelper {
 	
 	private static Colour generateColour() {
 
-		Long result = Math.round(Math.random() * 3);
+		Long result = Math.round(Math.random() * 2);
 
 		switch (result.intValue()) {
 		case 0:
