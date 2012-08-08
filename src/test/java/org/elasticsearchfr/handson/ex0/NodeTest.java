@@ -18,13 +18,9 @@ public class NodeTest{
 		Node node = null;
 
 		// Then we start our node for tests
-		// TODO Build a Node here
-		// node = ... ;
 		node = NodeBuilder.nodeBuilder().node();
 
 		Assert.assertNotNull(node);
 		Assert.assertFalse(node.isClosed());
-		
-		
 	}
 }

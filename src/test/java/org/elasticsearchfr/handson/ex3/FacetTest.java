@@ -317,7 +317,6 @@ public class FacetTest extends StartNode {
 			if (entry.from() == 6) nbFrom6 = entry.count();
 		}
 
-		// We have only 3 different beers. A default Term Facet returns 10 terms.
 		// So we expect to have 1000 total counts
 		Assert.assertEquals(1000, nbTo3 + nbFrom3To6 + nbFrom6);
 
