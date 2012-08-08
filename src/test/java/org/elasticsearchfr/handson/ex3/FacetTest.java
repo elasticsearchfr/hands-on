@@ -176,7 +176,7 @@ public class FacetTest extends StartNode {
 	}	
 	
 	/**
-	 * We use a Term Query on "brand" with term "heineken" with a Terms Facet on brand
+	 * We use a Term Filter on "brand" with term "heineken" with a Terms Facet on brand
 	 * <br>
 	 * @throws Exception
 	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html

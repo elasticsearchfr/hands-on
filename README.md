@@ -152,4 +152,49 @@ results. We also want to "highlight" some fields: colour and brand to see how it
 Test 3: Analyzing documents with facets
 ---------------------------------------
 
-TODO
+Before each test we index 1000 beers. After each test, we remove them.
+
+Tests are in [FacetTest.java](https://github.com/elasticsearchfr/hands-on/blob/master/src/test/java/org/elasticsearchfr/handson/ex3/FacetTest.java).
+
+### MatchAll Query with Terms Facet on beer brand - brand_termsFacet_matchAllQuery()
+
+We want to count beers by brand. We will create a matchAll query and add a "bybrand" terms facet on field "brand".
+
+We will check that the sum of all counts is equal to 1000.
+
+### Term Query with Terms Facet on beer brand - brand_termsFacet_termQuery()
+
+We want to count beers by brand. We will search for brand equals to "heineken" and add a "bybrand" terms 
+facet on field "brand".
+
+We will check that the sum of all counts is less than 1000.
+
+### Term Filter with Terms Facet on beer brand - brand_termsFacet_termFilter()
+
+We want to count beers by brand. We will search for all beers and apply a term filter on brand to
+get only "heineken" beers and we will add a "bybrand" terms facet on field "brand".
+
+We will see that the sum of all counts is 1000 unless we only get less than 1000 results.
+Could you explain why?
+
+### Term Filter with Terms Facet on beer brand with filter - brand_termsFacet_withFilter_termFilter()
+
+We want to count beers by brand. We will search for all beers and apply a term filter on brand to
+get only "heineken" beers and we will add a "bybrand" terms facet on field "brand" and we will reduce it
+with a the same filter as above.
+
+We will check that the sum of all counts is less than 1000.
+
+### MatchAll Query with Range Facet on beer price - brand_rangeFacet_matchAllQuery()
+
+We want to get some statistics on beer prices. We will create a matchAll query and add a "byprice" range facet on field "price":
+* price up to 3
+* price between 3 and 6
+* price more than 6
+
+We will check that the sum of all counts is equal to 1000. Because all ranges are exclusive.
+What will happen if we use the following ranges:
+* price up to 3
+* price between 2 and 8
+* price more than 6
+
