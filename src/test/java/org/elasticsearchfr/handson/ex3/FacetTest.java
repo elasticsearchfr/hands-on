@@ -89,9 +89,12 @@ public class FacetTest extends StartNode {
 	@Test
 	public void brand_termsFacet_matchAllQuery() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
-		AbstractFacetBuilder byBrandFacet = FacetBuilders.termsFacet("bybrand").field("brand");
+		
+		AbstractFacetBuilder byBrandFacet = null;
+		// TODO Create the facet
 
-		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).addFacet(byBrandFacet);
+		SearchRequestBuilder srb = null;
+		// TODO Create the request
 		
 		logger.info("Your query is : {}", srb);
 
@@ -103,21 +106,21 @@ public class FacetTest extends StartNode {
 		Assert.assertNotNull(sr.getHits());
 		Assert.assertEquals(1000, sr.getHits().getTotalHits());
 
-		Assert.assertNotNull(sr.getFacets());
-		Assert.assertNotNull(sr.getFacets().facet("bybrand"));
-		Assert.assertEquals("terms", sr.getFacets().facet("bybrand").getType());
+		// TODO Check that facets are not null
+		Assert.assertNotNull(null);
+		// TODO Check that facet bybrand is not null
+		Assert.assertNotNull(null);
+		// TODO Check that facet bybrand is "terms" type
+		Assert.assertEquals("terms", null);
 
-		TermsFacet bybrand = sr.getFacets().facet("bybrand");
+		// TODO Get the bybrand facet
+		TermsFacet bybrand = null;
 		
 		int nbHeineken = 0;
 		int nbGrimbergen = 0;
 		int nbKriek = 0;
 		
-		for (TermsFacet.Entry entry : bybrand) {
-			if ("Heineken".equalsIgnoreCase(entry.getTerm())) nbHeineken = entry.count();
-			if ("Grimbergen".equalsIgnoreCase(entry.getTerm())) nbGrimbergen = entry.count();
-			if ("Kriek".equalsIgnoreCase(entry.getTerm())) nbKriek = entry.count();
-		}
+		// TODO For each brand, save the count
 
 		// We have only 3 different beers. A default Term Facet returns 10 terms.
 		// So we expect to have 1000 total counts
@@ -137,9 +140,11 @@ public class FacetTest extends StartNode {
 	@Test
 	public void brand_termsFacet_termQuery() throws Exception {
 		QueryBuilder qb = QueryBuilders.termQuery("brand", "heineken");
-		AbstractFacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand");
+		AbstractFacetBuilder byBrandFacet = null;
+		// TODO Create the facet
 
-		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).addFacet(fb);
+		SearchRequestBuilder srb = null;
+		// TODO Create the request
 		
 		logger.info("Your query is : {}", srb);
 
@@ -187,9 +192,11 @@ public class FacetTest extends StartNode {
 	public void brand_termsFacet_termFilter() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
 		FilterBuilder filter = FilterBuilders.termFilter("brand", "heineken");
-		AbstractFacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand");
+		AbstractFacetBuilder byBrandFacet = null;
+		// TODO Create the facet
 
-		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).setFilter(filter).addFacet(fb);
+		SearchRequestBuilder srb = null;
+		// TODO Create the request
 		
 		logger.info("Your query is : {}", srb);
 
@@ -236,9 +243,11 @@ public class FacetTest extends StartNode {
 	public void brand_termsFacet_withFilter_termFilter() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
 		FilterBuilder filter = FilterBuilders.termFilter("brand", "heineken");
-		AbstractFacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand").facetFilter(filter);
+		AbstractFacetBuilder byBrandFacet = null;
+		// TODO Create the facet
 
-		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).setFilter(filter).addFacet(fb);
+		SearchRequestBuilder srb = null;
+		// TODO Create the request
 		
 		logger.info("Your query is : {}", srb);
 
@@ -287,9 +296,11 @@ public class FacetTest extends StartNode {
 	@Test
 	public void brand_rangeFacet_matchAllQuery() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
-		AbstractFacetBuilder byBrandFacet = FacetBuilders.rangeFacet("byprice").field("price").addUnboundedFrom(3).addRange(3, 6).addUnboundedTo(6);
+		AbstractFacetBuilder byPriceFacet = null;
+		// TODO Create the facet
 
-		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).addFacet(byBrandFacet);
+		SearchRequestBuilder srb = null;
+		// TODO Create the request
 		
 		logger.info("Your query is : {}", srb);
 
@@ -305,20 +316,15 @@ public class FacetTest extends StartNode {
 		Assert.assertNotNull(sr.getFacets().facet("byprice"));
 		Assert.assertEquals("range", sr.getFacets().facet("byprice").getType());
 
-		RangeFacet byprice = sr.getFacets().facet("byprice");
+		// TODO Get the byprice facet
+		RangeFacet byprice = null;
 		
 		long nbTo3 = 0;
 		long nbFrom3To6 = 0;
 		long nbFrom6 = 0;
 		
-		for (RangeFacet.Entry entry : byprice) {
-			if (entry.to() == 3) nbTo3 = entry.count();
-			if (entry.from() == 3 && entry.to() == 6) nbFrom3To6 = entry.count();
-			if (entry.from() == 6) nbFrom6 = entry.count();
-		}
+		// TODO verify that the total of each count is 1000
 
-		// We have only 3 different beers. A default Term Facet returns 10 terms.
-		// So we expect to have 1000 total counts
 		Assert.assertEquals(1000, nbTo3 + nbFrom3To6 + nbFrom6);
 
 		logger.info("We have : {} lower than 3, {} lower than 6 and {} upper than 6", nbTo3, nbFrom3To6, nbFrom6);

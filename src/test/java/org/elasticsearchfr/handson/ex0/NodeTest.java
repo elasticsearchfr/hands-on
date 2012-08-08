@@ -3,7 +3,6 @@ package org.elasticsearchfr.handson.ex0;
 import junit.framework.Assert;
 
 import org.elasticsearch.node.Node;
-import org.elasticsearch.node.NodeBuilder;
 import org.junit.Test;
 
 /**
@@ -20,11 +19,8 @@ public class NodeTest{
 		// Then we start our node for tests
 		// TODO Build a Node here
 		// node = ... ;
-		node = NodeBuilder.nodeBuilder().node();
 
 		Assert.assertNotNull(node);
 		Assert.assertFalse(node.isClosed());
-		
-		
 	}
 }

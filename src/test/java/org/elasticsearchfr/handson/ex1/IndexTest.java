@@ -8,7 +8,6 @@ import junit.framework.Assert;
 import org.elasticsearch.action.bulk.BulkItemResponse;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
-import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -57,41 +56,44 @@ public class IndexTest extends StartNode {
 		IndexResponse ir = null;
 
 		// generate a json content
-		String jsonString = mapper.writeValueAsString(beer);
+		String jsonString = null;
+		// TODO Serialize Beer to json
 
 		// indexing document
-		ir = node.client().prepareIndex("meal", "beer").setSource(jsonString)
-				.execute().actionGet();
+		// TODO index the beer in meal index, beer type
 
 		Assert.assertNotNull(ir);
 		Assert.assertNotNull(ir.id());
 
-		GetResponse gr = node.client().prepareGet("meal", "beer", ir.id())
-				.execute().actionGet();
+		GetResponse gr = null;
+		// TODO get the beer we have just indexed 
 
 		Assert.assertNotNull(gr);
 		Assert.assertNotNull(gr.id());
 
+		// We check that id are equals
 		Assert.assertEquals(ir.id(), gr.id());
 
-		Beer indexedBeer = mapper.readValue(gr.getSourceAsBytes(), Beer.class);
+		Beer indexedBeer = null;
+		
+		// TODO Deserialize json indexed beer into a beer object
 
 		Assert.assertNotNull(indexedBeer);
 		Assert.assertEquals(beer, indexedBeer);
 
 		// delete document
-		DeleteResponse dr = node.client()
-				.prepareDelete("meal", "beer", gr.id()).execute().get();
+		DeleteResponse dr = null;
+		
+		// TODO Remove from elasticsearch the indexed beer
 
 		Assert.assertNotNull(dr);
 		Assert.assertFalse(dr.notFound());
 
-		gr = node.client().prepareGet("meal", "beer", dr.id()).execute()
-				.actionGet();
+		// TODO get the beer we have just removed 
 
 		Assert.assertNotNull(gr);
+		// Beer should not exist anymore
 		Assert.assertFalse(gr.exists());
-
 	}
 
 	/**
@@ -111,25 +113,25 @@ public class IndexTest extends StartNode {
 
 		ObjectMapper mapper = new ObjectMapper(); // create once, reuse
 
-		BulkRequestBuilder brb = node.client().prepareBulk();
+		BulkRequestBuilder brb = null;
+		
+		// TODO Create the bulk
+		brb = node.client().prepareBulk();
 		for (int i = 0; i < 1000; i++) {
 			Beer beer = BeerHelper.generate();
-			IndexRequest irq = new IndexRequest("meal", "beer", "beer_"+i);
-			String jsonString = mapper.writeValueAsString(beer);
-			irq.source(jsonString);
-			brb.add(irq);
+			IndexRequest irq =  null; 
+			
+			// TODO Add the beer to meal index, type beer and set id = "beer_"+i
 		}
-		BulkResponse br = brb.execute().actionGet();
+		BulkResponse br = null;
+		
+		// TODO Execute the bulk
 
 		Assert.assertFalse(br.hasFailures());
 
-		brb = node.client().prepareBulk();
-		for (int i = 0; i < 1000; i++) {
-			DeleteRequest dr = new DeleteRequest("meal", "beer", "beer_"+i);
-			brb.add(dr);
-		}
-		br = brb.execute().actionGet();
-		
+		// TODO and now remove all beers using bulk
+
+		// We will check that all beers were found before removal
 		for (BulkItemResponse bulkItemResponse : br) {
 			Assert.assertTrue(bulkItemResponse.response() instanceof DeleteResponse);
 			Assert.assertFalse(((DeleteResponse)bulkItemResponse.response()).notFound());

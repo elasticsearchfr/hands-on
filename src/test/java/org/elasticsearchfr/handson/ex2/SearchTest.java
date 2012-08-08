@@ -54,9 +54,6 @@ public class SearchTest extends StartNode {
 
 		BulkResponse br = brb.execute().actionGet();
 		Assert.assertFalse(br.hasFailures());
-
-		// todo remove for exercise
-		node.client().admin().indices().prepareRefresh().execute().actionGet();
 	}
 
 	/**
@@ -85,18 +82,21 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void matchAllSearch() throws Exception {
-		QueryBuilder qb = QueryBuilders.matchAllQuery();
+		QueryBuilder qb = null;
+		// TODO create the query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch()
-				.setQuery(qb).execute().actionGet();
+		// TODO Execute the query
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
 		Assert.assertEquals(1000, sr.getHits().getTotalHits());
 
-		String jsonFirstHit = sr.getHits().getHits()[0].getSourceAsString();
+		String jsonFirstHit = null;
+		// TODO Get the first returned hit
+
 		logger.info("Your first is : {}", jsonFirstHit);
 	}
 
@@ -109,13 +109,13 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void termSearch_not_working() throws Exception {
-		QueryBuilder qb = QueryBuilders.termQuery("brand", "HeineKen");
+		QueryBuilder qb = null;
+		// TODO create the query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch()
-				.setQuery(qb)
-				.execute().actionGet();
+		// TODO Execute the query
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
@@ -135,13 +135,13 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void termSearch() throws Exception {
-		QueryBuilder qb = QueryBuilders.termQuery("brand", "heineken");
+		QueryBuilder qb = null;
+		// TODO create the query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch()
-				.setQuery(qb)
-				.execute().actionGet();
+		// TODO Execute the query
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
@@ -160,13 +160,13 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void textSearch() throws Exception {
-		QueryBuilder qb = QueryBuilders.textQuery("brand", "HEINEKEN");
+		QueryBuilder qb = null;
+		// TODO create the query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch()
-				.setQuery(qb)
-				.execute().actionGet();
+		// TODO Execute the query
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
@@ -187,13 +187,13 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void queryStringSearch() throws Exception {
-		QueryBuilder qb = QueryBuilders.queryString("HEINEKEN");
+		QueryBuilder qb = null;
+		// TODO create the query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch()
-				.setQuery(qb).execute()
-				.actionGet();
+		// TODO Execute the query
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
@@ -213,13 +213,13 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void rangeSearch() throws Exception {
-		QueryBuilder qb = QueryBuilders.rangeQuery("price").from(5).to(10);
+		QueryBuilder qb = null;
+		// TODO create the query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch()
-				.setQuery(qb)
-				.execute().actionGet();
+		// TODO Execute the query
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
@@ -243,19 +243,13 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void bool_text_and_range_Search() throws Exception {
-		QueryBuilder qb = QueryBuilders
-				.boolQuery()
-					.must(
-						QueryBuilders.textQuery("brand", "HEINEKEN")
-					)
-					.must(
-						QueryBuilders.rangeQuery("price").from(5).to(10)
-					);
+		QueryBuilder qb = null;
+		// TODO create the query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch().setQuery(qb)
-				.execute().actionGet();
+		// TODO Execute the query
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
@@ -283,21 +277,19 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void query_and_filter_Search() throws Exception {
-		QueryBuilder query = QueryBuilders
-				.boolQuery()
-					.must(
-						QueryBuilders.textQuery("brand", "HEINEKEN")
-					)
-					.must(
-						QueryBuilders.rangeQuery("price").from(5).to(10)
-					);
-		FilterBuilder filter = FilterBuilders.rangeFilter("size").from(1);
-		QueryBuilder qb = QueryBuilders.filteredQuery(query, filter);
+		QueryBuilder query = null;
+		// TODO create the query
+		
+		FilterBuilder filter = null;
+		// TODO create the filter
+
+		QueryBuilder qb = null;
+		// TODO create the filtered Query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch().setQuery(qb)
-				.execute().actionGet();
+		// TODO Execute the query
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
@@ -326,13 +318,13 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void google_Search() throws Exception {
-		QueryBuilder qb = QueryBuilders.queryString("HEINEKEN pale");
+		QueryBuilder qb = null;
+		// TODO create the filtered Query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch().setQuery(qb)
-				.setSize(100)
-				.execute().actionGet();
+		// TODO Execute the query and get the 100 first results
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
@@ -357,7 +349,7 @@ public class SearchTest extends StartNode {
 
 	/**
 	 * We want to search like google and see how scoring works on different documents.
-	 * <br>We will boost the colour as colour is more important than brand.
+	 * <br>We will boost by 3 the colour as colour is more important than brand. We can use a Lucene syntax (^)
 	 * <br>We will ask for the 100 first documents.
 	 * <br>We will highlight fields brand and colour
 	 * <br>We should have some results (or we are really unlucky!).
@@ -369,15 +361,13 @@ public class SearchTest extends StartNode {
 	 */
 	@Test
 	public void google_with_boost_Search() throws Exception {
-		QueryBuilder qb = QueryBuilders.queryString("HEINEKEN pale^3");
+		QueryBuilder qb = null;
+		// TODO create the filtered Query
 
 		logger.info("Your query is : {}", qb);
 
-		SearchResponse sr = node.client().prepareSearch().setQuery(qb)
-				.setSize(100)
-				.addHighlightedField("brand")
-				.addHighlightedField("colour")
-				.execute().actionGet();
+		// TODO Execute the query, get the 100 first results and highlight brand and colour fields
+		SearchResponse sr = null;
 
 		Assert.assertNotNull(sr);
 		Assert.assertNotNull(sr.getHits());
