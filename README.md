@@ -12,10 +12,11 @@ Optional
 
 First, you can download a full packaged version of Elasticsearch with:
 
-* Elasticsearch 0.19.9 (Non modified distribution is [here](https://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-0.19.9.zip) )
+* Elasticsearch 0.19.9 (Non modified distribution is [here](https://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-0.19.9.zip))
 * elasticsearch.yml file modified to disable multicast and use handson as a cluster name
 * [MOBZ Head Plugin](https://github.com/mobz/elasticsearch-head/zipball/master)
 * [Bigdesk Plugin](https://github.com/lukas-vlcek/bigdesk/zipball/master)
+* [Paramedic Plugin](https://github.com/karmi/elasticsearch-paramedic/zipball/master)
 
 Download the project
 --------------------
@@ -197,4 +198,15 @@ What will happen if we use the following ranges:
 * price up to 3
 * price between 2 and 8
 * price more than 6
+
+
+Bonuses
+=======
+
+TODO : Let's play with multiple nodes, with sharding and replicas.
+And let's monitor it with:
+
+* [MOBZ Head](http://localhost:9200/head/)
+* [Bigdesk](http://localhost:9200/_plugin/bigdesk/)
+* [Paramedic](http://localhost:9200/_plugin/paramedic/)
 
