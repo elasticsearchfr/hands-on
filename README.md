@@ -206,7 +206,7 @@ Bonuses
 TODO : Let's play with multiple nodes, with sharding and replicas.
 And let's monitor it with:
 
-* [MOBZ Head](http://localhost:9200/head/)
+* [MOBZ Head](http://localhost:9200/_plugin/head/)
 * [Bigdesk](http://localhost:9200/_plugin/bigdesk/)
 * [Paramedic](http://localhost:9200/_plugin/paramedic/)
 
