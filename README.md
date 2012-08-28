@@ -12,7 +12,7 @@ Optional
 
 First, you can download a full packaged version of Elasticsearch with:
 
-* Elasticsearch 0.19.8 (Non modified distribution is [here](https://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-0.19.8.zip) )
+* Elasticsearch 0.19.9 (Non modified distribution is [here](https://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-0.19.9.zip) )
 * elasticsearch.yml file modified to disable multicast and use handson as a cluster name
 * [MOBZ Head Plugin](https://github.com/mobz/elasticsearch-head/zipball/master)
 * [Bigdesk Plugin](https://github.com/lukas-vlcek/bigdesk/zipball/master)
