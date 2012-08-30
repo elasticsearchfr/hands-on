@@ -10,7 +10,7 @@ How to use it
 Optional
 --------
 
-First, you can download a full packaged version of Elasticsearch with:
+First, you can download a [full packaged version](https://github.com/downloads/elasticsearchfr/hands-on/elasticsearch-0.19.9-handson.zip) of Elasticsearch with:
 
 * Elasticsearch 0.19.9 (Non modified distribution is [here](https://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-0.19.9.zip))
 * elasticsearch.yml file modified to disable multicast and use handson as a cluster name
