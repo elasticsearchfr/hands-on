@@ -23,6 +23,7 @@ import org.elasticsearchfr.handson.beans.Beer;
 import org.elasticsearchfr.handson.beans.BeerHelper;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -188,7 +189,7 @@ public class FacetTest extends StartNode {
 	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
 	 * @see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
 	 */
-	@Test
+	@Test @Ignore
 	public void brand_termsFacet_termFilter() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
 		FilterBuilder filter = FilterBuilders.termFilter("brand", "heineken");
@@ -239,7 +240,7 @@ public class FacetTest extends StartNode {
 	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
 	 * @see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
 	 */
-	@Test
+	@Test @Ignore
 	public void brand_termsFacet_withFilter_termFilter() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
 		FilterBuilder filter = FilterBuilders.termFilter("brand", "heineken");

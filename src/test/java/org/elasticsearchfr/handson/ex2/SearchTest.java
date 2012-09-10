@@ -20,6 +20,7 @@ import org.elasticsearchfr.handson.beans.BeerHelper;
 import org.elasticsearchfr.handson.beans.Colour;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -275,7 +276,7 @@ public class SearchTest extends StartNode {
 	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
 	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/bool-query.html
 	 */
-	@Test
+	@Test @Ignore
 	public void query_and_filter_Search() throws Exception {
 		QueryBuilder query = null;
 		// TODO create the query
