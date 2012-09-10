@@ -109,11 +109,11 @@ We want to search for term "Heineken" in brand field. We will get 0 hit. Can you
 
 We fix the previous test. We should get more than 0 beer.
 
-### Text Query - textSearch()
+### Match Query - textSearch()
 
 We can search for HEINEKEN or HeiNEken in brand field. We should get more than 0 beer.
 
-What is the main difference between term and text queries?
+What is the main difference between term and match queries?
 
 ### Query String Query - queryStringSearch()
 
@@ -126,7 +126,7 @@ For example, you can also search for "+heineken -pale" or for "+heineken pale" a
 
 We build here a query based on beer price. We want to get beers with price between 5 and 10.
 
-### Boolean Query with Text and Range queries - bool_text_and_range_Search()
+### Boolean Query with Match and Range queries - bool_text_and_range_Search()
 
 We build a boolean query to get HEINEKEN beers with price between 5 and 10.
 
