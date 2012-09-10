@@ -132,7 +132,9 @@ We build a boolean query to get HEINEKEN beers with price between 5 and 10.
 
 We will check the first 10 hits that they answer to this rule.
 
-### Query with filters - query_and_filter_Search()
+### Query with filters - query_and_filter_Search() - Ignored
+
+*This test is disabled by default*. We will talk about it if we have enough time during the lab.
 
 We use the same query as the previous exercise but we want to filter results with at least 1 litter beers.
 
@@ -170,7 +172,9 @@ facet on field "brand".
 
 We will check that the sum of all counts is less than 1000.
 
-### Term Filter with Terms Facet on beer brand - brand_termsFacet_termFilter()
+### Term Filter with Terms Facet on beer brand - brand_termsFacet_termFilter() - Ignored
+
+*This test is disabled by default*. We will talk about it if we have enough time during the lab.
 
 We want to count beers by brand. We will search for all beers and apply a term filter on brand to
 get only "heineken" beers and we will add a "bybrand" terms facet on field "brand".
@@ -178,7 +182,9 @@ get only "heineken" beers and we will add a "bybrand" terms facet on field "bran
 We will see that the sum of all counts is 1000 unless we only get less than 1000 results.
 Could you explain why?
 
-### Term Filter with Terms Facet on beer brand with filter - brand_termsFacet_withFilter_termFilter()
+### Term Filter with Terms Facet on beer brand with filter - brand_termsFacet_withFilter_termFilter() - Ignored
+
+*This test is disabled by default*. We will talk about it if we have enough time during the lab.
 
 We want to count beers by brand. We will search for all beers and apply a term filter on brand to
 get only "heineken" beers and we will add a "bybrand" terms facet on field "brand" and we will reduce it
