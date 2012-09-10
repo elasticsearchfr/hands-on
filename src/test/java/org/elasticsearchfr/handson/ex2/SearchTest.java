@@ -156,11 +156,11 @@ public class SearchTest extends StartNode {
 	 * <br>Note that we can search "HEINEKEN is a beer"
 	 * @throws Exception
 	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
+	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/match-query.html
 	 */
 	@Test
 	public void textSearch() throws Exception {
-		QueryBuilder qb = QueryBuilders.textQuery("brand", "HEINEKEN");
+		QueryBuilder qb = QueryBuilders.matchQuery("brand", "HEINEKEN");
 
 		logger.info("Your query is : {}", qb);
 
@@ -237,7 +237,7 @@ public class SearchTest extends StartNode {
 	 * what we were looking for.
 	 * @throws Exception
 	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
+	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/match-query.html
 	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
 	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/bool-query.html
 	 */
@@ -246,7 +246,7 @@ public class SearchTest extends StartNode {
 		QueryBuilder qb = QueryBuilders
 				.boolQuery()
 					.must(
-						QueryBuilders.textQuery("brand", "HEINEKEN")
+						QueryBuilders.matchQuery("brand", "HEINEKEN")
 					)
 					.must(
 						QueryBuilders.rangeQuery("price").from(5).to(10)
@@ -277,7 +277,7 @@ public class SearchTest extends StartNode {
 	 * <br>We should have some results (or we are really unlucky!).
 	 * @throws Exception
 	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/text-query.html
+	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/match-query.html
 	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
 	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/bool-query.html
 	 */
@@ -286,7 +286,7 @@ public class SearchTest extends StartNode {
 		QueryBuilder query = QueryBuilders
 				.boolQuery()
 					.must(
-						QueryBuilders.textQuery("brand", "HEINEKEN")
+						QueryBuilders.matchQuery("brand", "HEINEKEN")
 					)
 					.must(
 						QueryBuilders.rangeQuery("price").from(5).to(10)
