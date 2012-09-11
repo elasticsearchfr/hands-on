@@ -59,5 +59,8 @@ public class MassiveInjectionTest extends StartNode {
 			BulkResponse br = brb.execute().actionGet();
 			Assert.assertFalse(br.hasFailures());
 		}
+		
+        // We prepare a refresh
+        node.client().admin().indices().prepareRefresh("massive").execute().actionGet(); 
 	}
 }
