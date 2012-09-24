@@ -35,6 +35,13 @@ Run tests
 
 Tests should fail as you have to fill blanks!
 
+
+Slides (French)
+===============
+
+Slides are available on [Slideshare](http://www.slideshare.net/dadoonet/hands-on-lab-elasticsearch)
+
+
 Use cases
 =========
 
