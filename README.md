@@ -148,6 +148,10 @@ results.
 We will ask for the first 100 results of "HEINEKEN pale^3". Let's see in logger how scoring order 
 results. We also want to "highlight" some fields: colour and brand to see how it appears in the JSon raw output.
 
+### Multi Search - multi_Search()
+
+We just want to test the multi search API. With multi search, we can run more than one search in a single call.
+
 
 
 Test 3: Analyzing documents with facets

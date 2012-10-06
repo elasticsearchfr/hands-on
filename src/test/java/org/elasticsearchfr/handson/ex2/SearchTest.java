@@ -6,6 +6,8 @@ import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.search.MultiSearchResponse;
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.ESLoggerFactory;
@@ -404,5 +406,30 @@ public class SearchTest extends StartNode {
 
 	}
 
-	
+	/**
+	 * We want to use multiSearch API and perform multiple searches in one single call.
+	 * @throws Exception
+	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * @see http://www.elasticsearch.org/guide/reference/api/multi-search.html
+	 */
+	@Test
+	public void multi_Search() throws Exception {
+		SearchRequestBuilder srb1 = node.client().prepareSearch().setQuery(QueryBuilders.queryString("pale")).setSize(1);
+		logger.info("Your 1st query is : {}", srb1);
+		SearchRequestBuilder srb2 = node.client().prepareSearch().setQuery(QueryBuilders.matchQuery("brand", "HEINEKEN")).setSize(1);
+		logger.info("Your 2nd query is : {}", srb2);
+		
+		MultiSearchResponse sr = node.client().prepareMultiSearch()
+				.add(srb1)
+				.add(srb2)
+				.execute().actionGet();
+
+		Assert.assertNotNull(sr);
+		Assert.assertEquals(2, sr.responses().length);
+
+		logger.info("Full json result is: {}", sr.toString());
+		
+
+	}
+
 }
