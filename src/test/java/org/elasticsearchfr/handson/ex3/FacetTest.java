@@ -121,7 +121,7 @@ public class FacetTest extends StartNode {
 		int nbGrimbergen = 0;
 		int nbKriek = 0;
 		
-		// TODO For each brand, save the count
+		// TODO For each brand, check the count
 
 		// We have only 3 different beers. A default Term Facet returns 10 terms.
 		// So we expect to have 1000 total counts
