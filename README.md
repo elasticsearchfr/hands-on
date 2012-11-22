@@ -157,6 +157,17 @@ results.
 We will ask for the first 100 results of "HEINEKEN pale^3". Let's see in logger how scoring order 
 results. We also want to "highlight" some fields: colour and brand to see how it appears in the JSon raw output.
 
+### Multi search - multi_Search()
+
+We want to run two queries at once:
+
+ * The first query is a queryString with "pale". We want only one result.
+ * The second query is a matchQuery on "brand" with "HEINEKEN". We want only one result.
+ 
+ 
+### Fuzzy search - fuzzySearch()
+
+We want to build Fuzzy Query and we want to find heinezken (mispelling).
 
 
 Test 3: Analyzing documents with facets
