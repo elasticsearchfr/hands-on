@@ -6,11 +6,12 @@ import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.search.MultiSearchResponse;
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.ESLoggerFactory;
 import org.elasticsearch.index.query.FilterBuilder;
-import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -395,6 +396,34 @@ public class SearchTest extends StartNode {
 
 	}
 
+
+	/**
+	 * We want to use multiSearch API and perform multiple searches in one single call.
+	 * @throws Exception
+	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * @see http://www.elasticsearch.org/guide/reference/api/multi-search.html
+	 */
+	@Test
+	public void multi_Search() throws Exception {
+		// TODO Prepare the first query (queryString with "pale"). We want only one result
+		SearchRequestBuilder srb1 = null;
+		logger.info("Your 1st query is : {}", srb1);
+		
+		// TODO Prepare the second query (matchQuery on "brand" with "HEINEKEN"). We want only one result
+		SearchRequestBuilder srb2 = null;
+		logger.info("Your 2nd query is : {}", srb2);
+		
+		// TODO Call the Multisearch API and add the two queries
+		MultiSearchResponse sr = null;
+
+		Assert.assertNotNull(sr);
+		Assert.assertEquals(2, sr.responses().length);
+
+		logger.info("Full json result is: {}", sr.toString());
+		
+
+	}
+	
 	/**
 	 * We want to build a fuzzyQuery Query
 	 * <br>We should have some results (or we are really unlucky!).
