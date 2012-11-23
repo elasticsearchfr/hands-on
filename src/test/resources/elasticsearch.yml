@@ -359,3 +359,17 @@
 #monitor.jvm.gc.ConcurrentMarkSweep.warn: 10s
 #monitor.jvm.gc.ConcurrentMarkSweep.info: 5s
 #monitor.jvm.gc.ConcurrentMarkSweep.debug: 2s
+
+# For the plugins/SuggestPluginTest test case
+ index:
+  analysis:
+    analyzer:
+      lowercase_analyzer:
+        type: custom
+        tokenizer: standard
+        filter: [standard, lowercase] 
+      suggest_analyzer:
+        type: custom
+        tokenizer: standard
+        filter: [standard, lowercase, shingle]
+        
