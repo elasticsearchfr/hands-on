@@ -432,4 +432,31 @@ public class SearchTest extends StartNode {
 
 	}
 
+	/**
+	 * We want to build a fuzzyQuery Query
+	 * <br>We should have some results (or we are really unlucky!).
+	 * <br>Note that we can search "heinezken"
+	 * @throws Exception
+	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/fuzzy-query.html
+	 */
+	@Test
+	public void fuzzySearch() throws Exception {
+		QueryBuilder qb = null;
+		// create the query
+		qb = QueryBuilders.fuzzyQuery("brand", "heinezken");
+		
+		logger.info("Your query is : {}", qb);
+
+		// Execute the query
+		SearchResponse sr = null;
+		sr = node.client().prepareSearch().setQuery(qb).execute().actionGet();
+		
+		Assert.assertNotNull(sr);
+		Assert.assertNotNull(sr.getHits());
+		Assert.assertTrue(sr.getHits().getTotalHits() > 0);
+
+		logger.info("We found {} beers", sr.getHits().totalHits());
+	}
+
 }

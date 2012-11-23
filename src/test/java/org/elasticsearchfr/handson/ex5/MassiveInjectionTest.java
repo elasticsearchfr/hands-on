@@ -12,6 +12,7 @@ import org.elasticsearch.indices.IndexAlreadyExistsException;
 import org.elasticsearchfr.handson.StartNode;
 import org.elasticsearchfr.handson.beans.Beer;
 import org.elasticsearchfr.handson.beans.BeerHelper;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * We want to inject many many many documents.
  */
+@Ignore
 public class MassiveInjectionTest extends StartNode {
 	protected final ESLogger logger = ESLoggerFactory.getLogger(this.getClass().getName());
 
