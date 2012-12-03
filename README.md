@@ -4,6 +4,12 @@ Hands On Lab
 This repository contains project models for hands on lab sessions about elasticsearch.
 
 
+Build Status
+============
+
+Thanks to cloudbees for the [answers branch build status](https://buildhive.cloudbees.com): [![Build Status](https://buildhive.cloudbees.com/job/elasticsearchfr/job/hands-on/badge/icon)](https://buildhive.cloudbees.com/job/elasticsearchfr/job/hands-on/)
+
+
 How to use it
 =============
 
