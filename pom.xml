@@ -103,11 +103,6 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.0.4</version>
 		</dependency>
-		<dependency>
-			<groupId>de.spinscale</groupId>
-			<artifactId>elasticsearch-plugin-suggest</artifactId>
-			<version>0.19.11-0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<repositories>
