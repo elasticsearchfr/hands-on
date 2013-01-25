@@ -18,18 +18,22 @@ Optional
 
 First, you can download the latest version of [Elasticsearch](http://www.elasticsearch.org/download/):
 
-    curl -OL -k http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.20.2.zip
+```sh
+curl -OL -k http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.20.2.zip
+```
 
 Modify `config/elasticsearch.yml` file. Elasticsearch use by default:
 
 * `elasticsearch` as cluster name
 * multicast discovery
 
-    # cluster.name: elasticsearch
-    cluster.name: handson
+```properties
+# cluster.name: elasticsearch
+cluster.name: handson
 
-    # discovery.zen.ping.multicast.enabled: false
-    discovery.zen.ping.multicast.enabled: false
+# discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.multicast.enabled: false
+```
 
 You can also download some nice GUI plugins:
 
@@ -37,9 +41,11 @@ You can also download some nice GUI plugins:
 * [Bigdesk Plugin](https://github.com/lukas-vlcek/bigdesk/zipball/master)
 * [Paramedic Plugin](https://github.com/karmi/elasticsearch-paramedic/zipball/master)
 
-    bin/plugin -install mobz/elasticsearch-head
-    bin/plugin -install lukas-vlcek/bigdesk
-    bin/plugin -install karmi/elasticsearch-paramedic
+```sh
+bin/plugin -install mobz/elasticsearch-head
+bin/plugin -install lukas-vlcek/bigdesk
+bin/plugin -install karmi/elasticsearch-paramedic
+```
 
 
 
