@@ -2,13 +2,12 @@ package org.elasticsearchfr.handson;
 
 import java.io.File;
 
-import junit.framework.Assert;
-
 import org.elasticsearch.common.io.FileSystemUtils;
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 
 public class StartNode {

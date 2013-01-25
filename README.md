@@ -16,13 +16,32 @@ How to use it
 Optional
 --------
 
-First, you can download a [full packaged version](https://github.com/downloads/elasticsearchfr/hands-on/elasticsearch-0.19.9-handson.zip) of Elasticsearch with:
+First, you can download the latest version of [Elasticsearch](http://www.elasticsearch.org/download/):
 
-* Elasticsearch 0.19.9 (Non modified distribution is [here](https://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-0.19.9.zip))
-* elasticsearch.yml file modified to disable multicast and use handson as a cluster name
+    curl -OL -k http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.20.2.zip
+
+Modify `config/elasticsearch.yml` file. Elasticsearch use by default:
+
+* `elasticsearch` as cluster name
+* multicast discovery
+
+    # cluster.name: elasticsearch
+    cluster.name: handson
+
+    # discovery.zen.ping.multicast.enabled: false
+    discovery.zen.ping.multicast.enabled: false
+
+You can also download some nice GUI plugins:
+
 * [MOBZ Head Plugin](https://github.com/mobz/elasticsearch-head/zipball/master)
 * [Bigdesk Plugin](https://github.com/lukas-vlcek/bigdesk/zipball/master)
 * [Paramedic Plugin](https://github.com/karmi/elasticsearch-paramedic/zipball/master)
+
+    bin/plugin -install mobz/elasticsearch-head
+    bin/plugin -install lukas-vlcek/bigdesk
+    bin/plugin -install karmi/elasticsearch-paramedic
+
+
 
 Download the project
 --------------------
@@ -42,8 +61,8 @@ Run tests
 Tests should fail as you have to fill blanks!
 
 
-Slides (French)
-===============
+Slides
+======
 
 Slides are available on [Slideshare](http://www.slideshare.net/dadoonet/hands-on-lab-elasticsearch)
 

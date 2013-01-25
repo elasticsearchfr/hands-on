@@ -1,7 +1,5 @@
 package org.elasticsearchfr.handson.ex3;
 
-import junit.framework.Assert;
-
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -21,10 +19,7 @@ import org.elasticsearch.search.facet.terms.TermsFacet;
 import org.elasticsearchfr.handson.StartNode;
 import org.elasticsearchfr.handson.beans.Beer;
 import org.elasticsearchfr.handson.beans.BeerHelper;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
