@@ -1,7 +1,5 @@
 package org.elasticsearchfr.handson.ex3;
 
-import junit.framework.Assert;
-
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -22,6 +20,7 @@ import org.elasticsearchfr.handson.StartNode;
 import org.elasticsearchfr.handson.beans.Beer;
 import org.elasticsearchfr.handson.beans.BeerHelper;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

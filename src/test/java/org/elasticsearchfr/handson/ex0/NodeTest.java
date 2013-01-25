@@ -1,9 +1,8 @@
 package org.elasticsearchfr.handson.ex0;
 
-import junit.framework.Assert;
-
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**

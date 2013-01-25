@@ -1,7 +1,5 @@
 package org.elasticsearchfr.handson.ex5;
 
-import junit.framework.Assert;
-
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -12,6 +10,7 @@ import org.elasticsearch.indices.IndexAlreadyExistsException;
 import org.elasticsearchfr.handson.StartNode;
 import org.elasticsearchfr.handson.beans.Beer;
 import org.elasticsearchfr.handson.beans.BeerHelper;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
