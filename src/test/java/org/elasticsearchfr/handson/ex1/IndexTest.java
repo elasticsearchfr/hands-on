@@ -1,8 +1,8 @@
 package org.elasticsearchfr.handson.ex1;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.bulk.BulkItemResponse;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -17,9 +17,8 @@ import org.elasticsearchfr.handson.beans.Colour;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Exercice 1: we are indexing beers
@@ -39,9 +38,9 @@ public class IndexTest extends StartNode {
 	 * @throws JsonMappingException
 	 * @throws IOException
 	 * @throws ExecutionException
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/index_.html
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/get.html
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/delete.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/index_.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/get.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/delete.html
 	 */
 	@Test
 	public void indexOneBeer() throws InterruptedException,
@@ -62,16 +61,16 @@ public class IndexTest extends StartNode {
 		// TODO index the beer in meal index, beer type
 
 		Assert.assertNotNull(ir);
-		Assert.assertNotNull(ir.id());
+		Assert.assertNotNull(ir.getId());
 
 		GetResponse gr = null;
 		// TODO get the beer we have just indexed 
 
 		Assert.assertNotNull(gr);
-		Assert.assertNotNull(gr.id());
+		Assert.assertNotNull(gr.getId());
 
 		// We check that id are equals
-		Assert.assertEquals(ir.id(), gr.id());
+		Assert.assertEquals(ir.getId(), gr.getId());
 
 		Beer indexedBeer = null;
 		
@@ -86,13 +85,14 @@ public class IndexTest extends StartNode {
 		// TODO Remove from elasticsearch the indexed beer
 
 		Assert.assertNotNull(dr);
-		Assert.assertFalse(dr.notFound());
+		Assert.assertFalse(dr.isNotFound());
 
 		// TODO get the beer we have just removed 
 
 		Assert.assertNotNull(gr);
 		// Beer should not exist anymore
-		Assert.assertFalse(gr.exists());
+		Assert.assertFalse(gr.isExists());
+
 	}
 
 	/**
@@ -102,9 +102,9 @@ public class IndexTest extends StartNode {
 	 * @throws JsonGenerationException
 	 * @throws JsonMappingException
 	 * @throws IOException
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/index_.html
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/get.html
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/delete.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/index_.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/get.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/delete.html
 	 */
 	@Test
 	public void indexOneThousandBeers() throws JsonGenerationException, JsonMappingException, 
@@ -132,8 +132,8 @@ public class IndexTest extends StartNode {
 
 		// We will check that all beers were found before removal
 		for (BulkItemResponse bulkItemResponse : br) {
-			Assert.assertTrue(bulkItemResponse.response() instanceof DeleteResponse);
-			Assert.assertFalse(((DeleteResponse)bulkItemResponse.response()).notFound());
+			Assert.assertTrue(bulkItemResponse.getResponse() instanceof DeleteResponse);
+			Assert.assertFalse(((DeleteResponse)bulkItemResponse.getResponse()).isNotFound());
 		}
 	}
 }

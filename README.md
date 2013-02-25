@@ -194,8 +194,8 @@ We want to run two queries at once:
 
  * The first query is a queryString with "pale". We want only one result.
  * The second query is a matchQuery on "brand" with "HEINEKEN". We want only one result.
- 
- 
+
+
 ### Fuzzy search - fuzzySearch()
 
 We want to build Fuzzy Query and we want to find heinezken (mispelling).
