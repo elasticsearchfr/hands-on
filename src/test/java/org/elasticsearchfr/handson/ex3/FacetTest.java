@@ -1,5 +1,6 @@
 package org.elasticsearchfr.handson.ex3;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -12,7 +13,7 @@ import org.elasticsearch.index.query.FilterBuilder;
 import org.elasticsearch.index.query.FilterBuilders;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.facet.AbstractFacetBuilder;
+import org.elasticsearch.search.facet.FacetBuilder;
 import org.elasticsearch.search.facet.FacetBuilders;
 import org.elasticsearch.search.facet.range.RangeFacet;
 import org.elasticsearch.search.facet.terms.TermsFacet;
@@ -24,15 +25,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 /**
  * We want to test facets.
  * <br>When starting tests, we initialize Elasticsearch cluster with
  * 1000 beers.
  * <br>After tests, we remove all beers.
- * @see http://www.elasticsearch.org/guide/reference/java-api/search.html
- * @see http://www.elasticsearch.org/guide/reference/api/search/facets/index.html
+ * <br>see http://www.elasticsearch.org/guide/reference/java-api/search.html
+ * <br>see http://www.elasticsearch.org/guide/reference/api/search/facets/index.html
  */
 public class FacetTest extends StartNode {
 	protected final ESLogger logger = ESLoggerFactory.getLogger(this.getClass().getName());
@@ -81,14 +80,14 @@ public class FacetTest extends StartNode {
 	 * We use a matchAll Query with a Terms Facet on brand
 	 * <br>
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
 	 */
 	@Test
 	public void brand_termsFacet_matchAllQuery() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
-		AbstractFacetBuilder byBrandFacet = FacetBuilders.termsFacet("bybrand").field("brand");
+        FacetBuilder byBrandFacet = FacetBuilders.termsFacet("bybrand").field("brand");
 
 		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).addFacet(byBrandFacet);
 		
@@ -113,9 +112,9 @@ public class FacetTest extends StartNode {
 		int nbKriek = 0;
 		
 		for (TermsFacet.Entry entry : bybrand) {
-			if ("Heineken".equalsIgnoreCase(entry.getTerm())) nbHeineken = entry.count();
-			if ("Grimbergen".equalsIgnoreCase(entry.getTerm())) nbGrimbergen = entry.count();
-			if ("Kriek".equalsIgnoreCase(entry.getTerm())) nbKriek = entry.count();
+			if ("Heineken".equalsIgnoreCase(entry.getTerm().toString())) nbHeineken = entry.getCount();
+			if ("Grimbergen".equalsIgnoreCase(entry.getTerm().toString())) nbGrimbergen = entry.getCount();
+			if ("Kriek".equalsIgnoreCase(entry.getTerm().toString())) nbKriek = entry.getCount();
 		}
 
 		// We have only 3 different beers. A default Term Facet returns 10 terms.
@@ -129,14 +128,14 @@ public class FacetTest extends StartNode {
 	 * We use a Term Query on "brand" with term "heineken" with a Terms Facet on brand
 	 * <br>
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
 	 */
 	@Test
 	public void brand_termsFacet_termQuery() throws Exception {
 		QueryBuilder qb = QueryBuilders.termQuery("brand", "heineken");
-		AbstractFacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand");
+        FacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand");
 
 		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).addFacet(fb);
 		
@@ -160,9 +159,9 @@ public class FacetTest extends StartNode {
 		int nbKriek = 0;
 		
 		for (TermsFacet.Entry entry : bybrand) {
-			if ("Heineken".equalsIgnoreCase(entry.getTerm())) nbHeineken = entry.count();
-			if ("Grimbergen".equalsIgnoreCase(entry.getTerm())) nbGrimbergen = entry.count();
-			if ("Kriek".equalsIgnoreCase(entry.getTerm())) nbKriek = entry.count();
+			if ("Heineken".equalsIgnoreCase(entry.getTerm().toString())) nbHeineken = entry.getCount();
+			if ("Grimbergen".equalsIgnoreCase(entry.getTerm().toString())) nbGrimbergen = entry.getCount();
+			if ("Kriek".equalsIgnoreCase(entry.getTerm().toString())) nbKriek = entry.getCount();
 		}
 
 		Assert.assertEquals(0, nbGrimbergen);
@@ -178,15 +177,15 @@ public class FacetTest extends StartNode {
 	 * We use a Term Filter on "brand" with term "heineken" with a Terms Facet on brand
 	 * <br>
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
 	 */
 	@Test
 	public void brand_termsFacet_termFilter() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
 		FilterBuilder filter = FilterBuilders.termFilter("brand", "heineken");
-		AbstractFacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand");
+        FacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand");
 
 		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).setFilter(filter).addFacet(fb);
 		
@@ -210,9 +209,9 @@ public class FacetTest extends StartNode {
 		int nbKriek = 0;
 		
 		for (TermsFacet.Entry entry : bybrand) {
-			if ("Heineken".equalsIgnoreCase(entry.getTerm())) nbHeineken = entry.count();
-			if ("Grimbergen".equalsIgnoreCase(entry.getTerm())) nbGrimbergen = entry.count();
-			if ("Kriek".equalsIgnoreCase(entry.getTerm())) nbKriek = entry.count();
+			if ("Heineken".equalsIgnoreCase(entry.getTerm().toString())) nbHeineken = entry.getCount();
+			if ("Grimbergen".equalsIgnoreCase(entry.getTerm().toString())) nbGrimbergen = entry.getCount();
+			if ("Kriek".equalsIgnoreCase(entry.getTerm().toString())) nbKriek = entry.getCount();
 		}
 
 		// We have only Heineken beers.
@@ -227,15 +226,15 @@ public class FacetTest extends StartNode {
 	 * We use a Term Query on "brand" with term "heineken" with a Filtered Terms Facet on brand
 	 * <br>
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/api/search/facets/terms-facet.html
 	 */
 	@Test
 	public void brand_termsFacet_withFilter_termFilter() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
 		FilterBuilder filter = FilterBuilders.termFilter("brand", "heineken");
-		AbstractFacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand").facetFilter(filter);
+        FacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand").facetFilter(filter);
 
 		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).setFilter(filter).addFacet(fb);
 		
@@ -259,9 +258,9 @@ public class FacetTest extends StartNode {
 		int nbKriek = 0;
 		
 		for (TermsFacet.Entry entry : bybrand) {
-			if ("Heineken".equalsIgnoreCase(entry.getTerm())) nbHeineken = entry.count();
-			if ("Grimbergen".equalsIgnoreCase(entry.getTerm())) nbGrimbergen = entry.count();
-			if ("Kriek".equalsIgnoreCase(entry.getTerm())) nbKriek = entry.count();
+			if ("Heineken".equalsIgnoreCase(entry.getTerm().toString())) nbHeineken = entry.getCount();
+			if ("Grimbergen".equalsIgnoreCase(entry.getTerm().toString())) nbGrimbergen = entry.getCount();
+			if ("Kriek".equalsIgnoreCase(entry.getTerm().toString())) nbKriek = entry.getCount();
 		}
 
 		// We have only Heineken beers. And we have filtered facet with Heineken beers.
@@ -279,14 +278,14 @@ public class FacetTest extends StartNode {
 	 * <li>price >= 6
 	 * </ul>
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/api/search/facets/range-facet.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/api/search/facets/range-facet.html
 	 */
 	@Test
 	public void brand_rangeFacet_matchAllQuery() throws Exception {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
-		AbstractFacetBuilder byBrandFacet = FacetBuilders.rangeFacet("byprice").field("price").addUnboundedFrom(3).addRange(3, 6).addUnboundedTo(6);
+        FacetBuilder byBrandFacet = FacetBuilders.rangeFacet("byprice").field("price").addUnboundedFrom(3).addRange(3, 6).addUnboundedTo(6);
 
 		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).addFacet(byBrandFacet);
 		
@@ -311,9 +310,9 @@ public class FacetTest extends StartNode {
 		long nbFrom6 = 0;
 		
 		for (RangeFacet.Entry entry : byprice) {
-			if (entry.to() == 3) nbTo3 = entry.count();
-			if (entry.from() == 3 && entry.to() == 6) nbFrom3To6 = entry.count();
-			if (entry.from() == 6) nbFrom6 = entry.count();
+			if (entry.getTo() == 3) nbTo3 = entry.getCount();
+			if (entry.getFrom() == 3 && entry.getTo() == 6) nbFrom3To6 = entry.getCount();
+			if (entry.getFrom() == 6) nbFrom6 = entry.getCount();
 		}
 
 		// So we expect to have 1000 total counts

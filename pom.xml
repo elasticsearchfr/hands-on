@@ -18,8 +18,8 @@
 	</licenses>
 
 	<properties>
-		<elasticsearch.version>0.20.2</elasticsearch.version>
-        <jackson.version>2.1.0</jackson.version>
+		<elasticsearch.version>0.21.0.Beta1-SNAPSHOT</elasticsearch.version>
+        <jackson.version>2.1.2</jackson.version>
 	</properties>
 
 	<developers>

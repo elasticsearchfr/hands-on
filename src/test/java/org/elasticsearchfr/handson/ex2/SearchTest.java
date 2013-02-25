@@ -30,7 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * <br>When starting tests, we initialize Elasticsearch cluster with
  * 1000 beers.
  * <br>After tests, we remove all beers.
- * @see http://www.elasticsearch.org/guide/reference/java-api/search.html
+ * <br>see http://www.elasticsearch.org/guide/reference/java-api/search.html
  */
 public class SearchTest extends StartNode {
 	protected final ESLogger logger = ESLoggerFactory.getLogger(this.getClass().getName());
@@ -81,8 +81,8 @@ public class SearchTest extends StartNode {
 	 * <br>We should have 1000 results
 	 * <br>We want to display the _source content of the first Hit.
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/match-all-query.html
 	 */
 	@Test
 	public void matchAllSearch() throws Exception {
@@ -105,8 +105,8 @@ public class SearchTest extends StartNode {
 	 * We want to build a termQuery Query to find "Heineken" beers.
 	 * <br>But we won't have any result. Could you explain why?
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
 	 */
 	@Test
 	public void termSearch_not_working() throws Exception {
@@ -131,8 +131,8 @@ public class SearchTest extends StartNode {
 	 * We want to build a termQuery Query
 	 * <br>We should have some results (or we are really unlucky!). So fix the previous test {@link #termSearch_not_working()}
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/term-query.html
 	 */
 	@Test
 	public void termSearch() throws Exception {
@@ -156,8 +156,8 @@ public class SearchTest extends StartNode {
 	 * <br>We should have some results (or we are really unlucky!).
 	 * <br>Note that we can search "HEINEKEN is a beer"
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/match-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/match-query.html
 	 */
 	@Test
 	public void textSearch() throws Exception {
@@ -181,9 +181,9 @@ public class SearchTest extends StartNode {
 	 * <br>We should have some results (or we are really unlucky!).
 	 * <br>Note that we can search "HEINEKEN is a beer". Note that you can use a Lucene syntax.
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
-	 * @see http://lucene.apache.org/core/3_6_1/queryparsersyntax.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
+	 * <br>see http://lucene.apache.org/core/3_6_1/queryparsersyntax.html
 	 * 
 	 */
 	@Test
@@ -208,8 +208,8 @@ public class SearchTest extends StartNode {
 	 * with price between 5 and 10.
 	 * <br>We should have some results (or we are really unlucky!).
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
 	 * 
 	 */
 	@Test
@@ -237,10 +237,10 @@ public class SearchTest extends StartNode {
 	 * Beer javabeans to check that Elasticsearch has really return
 	 * what we were looking for.
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/match-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/bool-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/match-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/bool-query.html
 	 */
 	@Test
 	public void bool_text_and_range_Search() throws Exception {
@@ -277,10 +277,10 @@ public class SearchTest extends StartNode {
 	 * <br>We must find Heineken beers with price between 5 and 10 and size more than 1.
 	 * <br>We should have some results (or we are really unlucky!).
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/match-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/bool-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/match-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/range-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/bool-query.html
 	 */
 	@Test
 	public void query_and_filter_Search() throws Exception {
@@ -321,9 +321,9 @@ public class SearchTest extends StartNode {
 	 * <br>We will ask for the 100 first documents.
 	 * <br>We should have some results (or we are really unlucky!).
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/api/search/from-size.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/api/search/from-size.html
 	 */
 	@Test
 	public void google_Search() throws Exception {
@@ -363,10 +363,10 @@ public class SearchTest extends StartNode {
 	 * <br>We will highlight fields brand and colour
 	 * <br>We should have some results (or we are really unlucky!).
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
-	 * @see http://www.elasticsearch.org/guide/reference/api/search/from-size.html
-	 * @see http://www.elasticsearch.org/guide/reference/api/search/highlighting.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/query-string-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/api/search/from-size.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/api/search/highlighting.html
 	 */
 	@Test
 	public void google_with_boost_Search() throws Exception {
@@ -408,8 +408,8 @@ public class SearchTest extends StartNode {
 	/**
 	 * We want to use multiSearch API and perform multiple searches in one single call.
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/api/multi-search.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/api/multi-search.html
 	 */
 	@Test
 	public void multi_Search() throws Exception {
@@ -424,7 +424,7 @@ public class SearchTest extends StartNode {
 				.execute().actionGet();
 
 		Assert.assertNotNull(sr);
-		Assert.assertEquals(2, sr.responses().length);
+		Assert.assertEquals(2, sr.getResponses().length);
 
 		logger.info("Full json result is: {}", sr.toString());
 		
@@ -436,8 +436,8 @@ public class SearchTest extends StartNode {
 	 * <br>We should have some results (or we are really unlucky!).
 	 * <br>Note that we can search "heinezken"
 	 * @throws Exception
-	 * @see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
-	 * @see http://www.elasticsearch.org/guide/reference/query-dsl/fuzzy-query.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/java-api/query-dsl.html
+	 * <br>see http://www.elasticsearch.org/guide/reference/query-dsl/fuzzy-query.html
 	 */
 	@Test
 	public void fuzzySearch() throws Exception {

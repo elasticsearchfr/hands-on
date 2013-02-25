@@ -4,19 +4,50 @@ Hands On Lab
 This repository contains project models for hands on lab sessions about elasticsearch.
 
 
+Build Status
+============
+
+Thanks to cloudbees for the [answers branch build status](https://buildhive.cloudbees.com): [![Build Status](https://buildhive.cloudbees.com/job/elasticsearchfr/job/hands-on/badge/icon)](https://buildhive.cloudbees.com/job/elasticsearchfr/job/hands-on/)
+
+
 How to use it
 =============
 
 Optional
 --------
 
-First, you can download a [full packaged version](https://github.com/downloads/elasticsearchfr/hands-on/elasticsearch-0.19.9-handson.zip) of Elasticsearch with:
+First, you can download the latest version of [Elasticsearch](http://www.elasticsearch.org/download/):
 
-* Elasticsearch 0.19.9 (Non modified distribution is [here](https://github.com/downloads/elasticsearch/elasticsearch/elasticsearch-0.19.9.zip))
-* elasticsearch.yml file modified to disable multicast and use handson as a cluster name
+```sh
+curl -OL -k http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.21.0.Beta1.zip
+```
+
+Modify `config/elasticsearch.yml` file. Elasticsearch use by default:
+
+* `elasticsearch` as cluster name
+* multicast discovery
+
+```properties
+# cluster.name: elasticsearch
+cluster.name: handson
+
+# discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.multicast.enabled: false
+```
+
+You can also download some nice GUI plugins:
+
 * [MOBZ Head Plugin](https://github.com/mobz/elasticsearch-head/zipball/master)
 * [Bigdesk Plugin](https://github.com/lukas-vlcek/bigdesk/zipball/master)
 * [Paramedic Plugin](https://github.com/karmi/elasticsearch-paramedic/zipball/master)
+
+```sh
+bin/plugin -install mobz/elasticsearch-head
+bin/plugin -install lukas-vlcek/bigdesk
+bin/plugin -install karmi/elasticsearch-paramedic
+```
+
+
 
 Download the project
 --------------------
@@ -35,6 +66,13 @@ Run tests
 
 Tests should fail as you have to fill blanks!
 
+
+Slides
+======
+
+Slides are available on [Slideshare](http://www.slideshare.net/dadoonet/hands-on-lab-elasticsearch)
+
+
 Use cases
 =========
 
@@ -52,7 +90,7 @@ You can add the following line at the end of NodeTest:
      Thread.sleep(120000);
      
 And open in your browser: [http://localhost:9200/_plugin/head/](http://localhost:9200/_plugin/head/) to see one node, then both nodes and then only one node.
-Have a look also at [http://localhost:9200/_plugin/bigdesk/](http://localhost:9200/_plugin/bigdesk/)
+Have a look also at [http://localhost:9200/_plugin/bigdesk/](http://localhost:9200/_plugin/bigdesk/) and [http://localhost:9200/_plugin/paramedic/](http://localhost:9200/_plugin/paramedic/)
 
 
 Test 1: Index/Get and Delete some documents
@@ -109,11 +147,11 @@ We want to search for term "Heineken" in brand field. We will get 0 hit. Can you
 
 We fix the previous test. We should get more than 0 beer.
 
-### Text Query - textSearch()
+### Match Query - textSearch()
 
 We can search for HEINEKEN or HeiNEken in brand field. We should get more than 0 beer.
 
-What is the main difference between term and text queries?
+What is the main difference between term and match queries?
 
 ### Query String Query - queryStringSearch()
 
@@ -126,13 +164,15 @@ For example, you can also search for "+heineken -pale" or for "+heineken pale" a
 
 We build here a query based on beer price. We want to get beers with price between 5 and 10.
 
-### Boolean Query with Text and Range queries - bool_text_and_range_Search()
+### Boolean Query with Match and Range queries - bool_text_and_range_Search()
 
 We build a boolean query to get HEINEKEN beers with price between 5 and 10.
 
 We will check the first 10 hits that they answer to this rule.
 
-### Query with filters - query_and_filter_Search()
+### Query with filters - query_and_filter_Search() - Ignored
+
+*This test is disabled by default*. We will talk about it if we have enough time during the lab.
 
 We use the same query as the previous exercise but we want to filter results with at least 1 litter beers.
 
@@ -148,10 +188,17 @@ results.
 We will ask for the first 100 results of "HEINEKEN pale^3". Let's see in logger how scoring order 
 results. We also want to "highlight" some fields: colour and brand to see how it appears in the JSon raw output.
 
-### Multi Search - multi_Search()
+### Multi search - multi_Search()
 
-We just want to test the multi search API. With multi search, we can run more than one search in a single call.
+We want to run two queries at once:
 
+ * The first query is a queryString with "pale". We want only one result.
+ * The second query is a matchQuery on "brand" with "HEINEKEN". We want only one result.
+
+
+### Fuzzy search - fuzzySearch()
+
+We want to build Fuzzy Query and we want to find heinezken (mispelling).
 
 
 Test 3: Analyzing documents with facets
@@ -174,7 +221,9 @@ facet on field "brand".
 
 We will check that the sum of all counts is less than 1000.
 
-### Term Filter with Terms Facet on beer brand - brand_termsFacet_termFilter()
+### Term Filter with Terms Facet on beer brand - brand_termsFacet_termFilter() - Ignored
+
+*This test is disabled by default*. We will talk about it if we have enough time during the lab.
 
 We want to count beers by brand. We will search for all beers and apply a term filter on brand to
 get only "heineken" beers and we will add a "bybrand" terms facet on field "brand".
@@ -182,7 +231,9 @@ get only "heineken" beers and we will add a "bybrand" terms facet on field "bran
 We will see that the sum of all counts is 1000 unless we only get less than 1000 results.
 Could you explain why?
 
-### Term Filter with Terms Facet on beer brand with filter - brand_termsFacet_withFilter_termFilter()
+### Term Filter with Terms Facet on beer brand with filter - brand_termsFacet_withFilter_termFilter() - Ignored
+
+*This test is disabled by default*. We will talk about it if we have enough time during the lab.
 
 We want to count beers by brand. We will search for all beers and apply a term filter on brand to
 get only "heineken" beers and we will add a "bybrand" terms facet on field "brand" and we will reduce it
