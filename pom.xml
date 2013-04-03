@@ -18,7 +18,7 @@
 	</licenses>
 
 	<properties>
-		<elasticsearch.version>0.21.0.Beta1-SNAPSHOT</elasticsearch.version>
+		<elasticsearch.version>0.90.0.RC1</elasticsearch.version>
         <jackson.version>2.1.2</jackson.version>
 	</properties>
 
