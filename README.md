@@ -19,7 +19,7 @@ Optional
 First, you can download the latest version of [Elasticsearch](http://www.elasticsearch.org/download/):
 
 ```sh
-curl -OL -k http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.20.2.zip
+curl -OL -k http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.0.RC2.zip
 ```
 
 Modify `config/elasticsearch.yml` file. Elasticsearch use by default:
