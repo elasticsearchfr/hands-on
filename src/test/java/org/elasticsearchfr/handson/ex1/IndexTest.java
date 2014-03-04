@@ -85,7 +85,7 @@ public class IndexTest extends StartNode {
 		// TODO Remove from elasticsearch the indexed beer
 
 		Assert.assertNotNull(dr);
-		Assert.assertFalse(dr.isNotFound());
+		Assert.assertTrue(dr.isFound());
 
 		// TODO get the beer we have just removed 
 
@@ -133,7 +133,7 @@ public class IndexTest extends StartNode {
 		// We will check that all beers were found before removal
 		for (BulkItemResponse bulkItemResponse : br) {
 			Assert.assertTrue(bulkItemResponse.getResponse() instanceof DeleteResponse);
-			Assert.assertFalse(((DeleteResponse)bulkItemResponse.getResponse()).isNotFound());
+			Assert.assertTrue(((DeleteResponse)bulkItemResponse.getResponse()).isFound());
 		}
 	}
 }
