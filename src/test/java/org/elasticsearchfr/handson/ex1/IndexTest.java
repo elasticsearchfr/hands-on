@@ -82,7 +82,7 @@ public class IndexTest extends StartNode {
 				.prepareDelete("meal", "beer", gr.getId()).execute().get();
 
 		Assert.assertNotNull(dr);
-		Assert.assertFalse(dr.isNotFound());
+		Assert.assertTrue(dr.isFound());
 
 		gr = node.client().prepareGet("meal", "beer", dr.getId()).execute()
 				.actionGet();
@@ -130,7 +130,7 @@ public class IndexTest extends StartNode {
 		
 		for (BulkItemResponse bulkItemResponse : br) {
 			Assert.assertTrue(bulkItemResponse.getResponse() instanceof DeleteResponse);
-			Assert.assertFalse(((DeleteResponse)bulkItemResponse.getResponse()).isNotFound());
+			Assert.assertTrue(((DeleteResponse)bulkItemResponse.getResponse()).isFound());
 		}
 	}
 }

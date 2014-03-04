@@ -187,7 +187,7 @@ public class FacetTest extends StartNode {
 		FilterBuilder filter = FilterBuilders.termFilter("brand", "heineken");
         FacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand");
 
-		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).setFilter(filter).addFacet(fb);
+		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).setPostFilter(filter).addFacet(fb);
 		
 		logger.info("Your query is : {}", srb);
 
@@ -236,7 +236,7 @@ public class FacetTest extends StartNode {
 		FilterBuilder filter = FilterBuilders.termFilter("brand", "heineken");
         FacetBuilder fb = FacetBuilders.termsFacet("bybrand").field("brand").facetFilter(filter);
 
-		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).setFilter(filter).addFacet(fb);
+		SearchRequestBuilder srb = node.client().prepareSearch().setQuery(qb).setPostFilter(filter).addFacet(fb);
 		
 		logger.info("Your query is : {}", srb);
 

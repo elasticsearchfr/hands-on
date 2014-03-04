@@ -19,7 +19,7 @@ Optional
 First, you can download the latest version of [Elasticsearch](http://www.elasticsearch.org/download/):
 
 ```sh
-curl -OL -k http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.0.RC2.zip
+curl -OL -k http://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.zip
 ```
 
 Modify `config/elasticsearch.yml` file. Elasticsearch use by default:
@@ -37,14 +37,12 @@ discovery.zen.ping.multicast.enabled: false
 
 You can also download some nice GUI plugins:
 
-* [MOBZ Head Plugin](https://github.com/mobz/elasticsearch-head/zipball/master)
-* [Bigdesk Plugin](https://github.com/lukas-vlcek/bigdesk/zipball/master)
-* [Paramedic Plugin](https://github.com/karmi/elasticsearch-paramedic/zipball/master)
+* [Marvel Plugin](http://www.elasticsearch.org/overview/marvel/) (free for dev)
+* [Kopf Plugin](https://github.com/lmenezes/elasticsearch-kopf/zipball/master)
 
 ```sh
-bin/plugin -install mobz/elasticsearch-head
-bin/plugin -install lukas-vlcek/bigdesk
-bin/plugin -install karmi/elasticsearch-paramedic
+bin/plugin -i elasticsearch/marvel/latest
+bin/plugin -install lmenezes/elasticsearch-kopf
 ```
 
 
@@ -89,8 +87,8 @@ You can add the following line at the end of NodeTest:
 
      Thread.sleep(120000);
      
-And open in your browser: [http://localhost:9200/_plugin/head/](http://localhost:9200/_plugin/head/) to see one node, then both nodes and then only one node.
-Have a look also at [http://localhost:9200/_plugin/bigdesk/](http://localhost:9200/_plugin/bigdesk/) and [http://localhost:9200/_plugin/paramedic/](http://localhost:9200/_plugin/paramedic/)
+And open in your browser: [http://localhost:9200/_plugin/marvel/](http://localhost:9200/_plugin/marvel/) to see one node, then both nodes and then only one node.
+Have a look also at [http://localhost:9200/_plugin/kopf/](http://localhost:9200/_plugin/kopf/)
 
 
 Test 1: Index/Get and Delete some documents
@@ -261,7 +259,6 @@ Bonuses
 TODO : Let's play with multiple nodes, with sharding and replicas.
 And let's monitor it with:
 
-* [MOBZ Head](http://localhost:9200/_plugin/head/)
-* [Bigdesk](http://localhost:9200/_plugin/bigdesk/)
-* [Paramedic](http://localhost:9200/_plugin/paramedic/)
+* [Marvel](http://localhost:9200/_plugin/marvel/)
+* [Kopt](http://localhost:9200/_plugin/kopf/)
 
